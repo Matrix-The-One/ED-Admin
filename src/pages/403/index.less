@@ -1,0 +1,173 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.message {
+  color: rgba(0, 0, 0, 0.45);
+  font-weight: 500;
+  font-size: 28px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.button {
+  margin: 30px 0 100px;
+}
+
+.neon {
+  width: 300px;
+  margin-bottom: 10px;
+  color: #5be0b3;
+  font-size: 85px;
+  font-family: 'Varela Round', sans-serif;
+  letter-spacing: 3px;
+  text-align: center;
+  text-shadow: 0 0 5px #6eecc1;
+  animation: flux 2s linear infinite;
+}
+
+.trash {
+  top: 300px;
+  width: 170px;
+  height: 220px;
+  background-color: #585f67;
+}
+
+.can {
+  width: 190px;
+  height: 30px;
+  background-color: #6b737c;
+  border-radius: 15px 15px 0 0;
+}
+
+.door-frame {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 295px;
+  height: 495px;
+  background-color: #8594a5;
+  border-radius: 90px 90px 0 0;
+}
+
+.door {
+  width: 250px;
+  height: 450px;
+  background-color: #a0aec0;
+  border-radius: 70px 70px 0 0;
+}
+
+.eye {
+  position: absolute;
+  top: 15px;
+  left: 25px;
+  width: 15px;
+  height: 5px;
+  background-color: white;
+  border-radius: 50%;
+  animation: eye 7s ease-in-out infinite;
+}
+.eye2 {
+  left: 65px;
+}
+
+.window {
+  position: relative;
+  width: 130px;
+  height: 40px;
+  margin: 80px auto;
+  background-color: #1c2127;
+  border-radius: 3px;
+}
+
+.leaf {
+  width: 130px;
+  height: 40px;
+  margin: 80px auto;
+  background-color: #8594a5;
+  border-radius: 3px;
+  transform-origin: right;
+  animation: leaf 7s infinite;
+}
+
+.handle {
+  position: absolute;
+  width: 50px;
+  height: 8px;
+  margin-top: 250px;
+  margin-left: 30px;
+  background-color: #ebf3fc;
+  border-radius: 4px;
+}
+
+.rectangle {
+  position: absolute;
+  width: 25px;
+  height: 70px;
+  margin-top: 220px;
+  margin-left: 20px;
+  background-color: #cbd8e6;
+  border-radius: 4px;
+}
+
+@keyframes leaf {
+  0% {
+    transform: scaleX(1);
+  }
+  5% {
+    transform: scaleX(0.2);
+  }
+  70% {
+    transform: scaleX(0.2);
+  }
+  75% {
+    transform: scaleX(1);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes eye {
+  0% {
+    transform: translateX(0);
+    opacity: 0;
+  }
+  5% {
+    opacity: 0;
+  }
+  15% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  20% {
+    transform: translateX(15px);
+  }
+  35% {
+    transform: translateX(15px);
+  }
+  40% {
+    transform: translateX(-15px);
+  }
+  60% {
+    transform: translateX(-15px);
+  }
+  65% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes flux {
+  0%,
+  100% {
+    color: #4bffef;
+    text-shadow: 0 0 5px #00ffc6, 0 0 15px #00ffc6, 0 0 50px #00ffc6,
+      0 0 50px #00ffc6, 0 0 2px #b9ffe8, 2px 2px 3px #12e29c;
+  }
+  50% {
+    color: #63d3ae;
+    text-shadow: 0 0 3px #00b58d, 0 0 7px #00b58d, 0 0 25px #00b58d,
+      0 0 25px #00b58d, 0 0 2px #00b58d, 2px 2px 3px #006a60;
+  }
+}

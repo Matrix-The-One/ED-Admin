@@ -1,0 +1,24 @@
+.avatar-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.3);
+
+    .avatar-edit-icon {
+      display: block;
+    }
+  }
+
+  .avatar-edit-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    display: none;
+    color: rgb(24, 144, 255);
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+  }
+}
