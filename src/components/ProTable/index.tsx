@@ -1,7 +1,7 @@
-import { useRef } from 'react'
+import type { ActionType, ProTableProps } from '@ant-design/pro-components'
 import { ProTable as AntProTable } from '@ant-design/pro-components'
-import type { ActionType } from '@ant-design/pro-components'
-import type { ProTableProps } from '@ant-design/pro-components'
+import { useRef } from 'react'
+import styles from './index.less'
 import type { IProps, ParamsType, RequiredPick } from './typing'
 import { generateParams, safeGetValue } from './utils'
 
@@ -32,12 +32,18 @@ const ProTable = <
 
   return (
     <AntProTable<DataType, Params, ValueType>
+      bordered
       rowKey='id'
-      cardBordered
+      size='small'
+      options={false}
       defaultSize='large'
       dateFormatter='string'
       actionRef={proActionRef}
       form={{ ignoreRules: false }}
+      search={{
+        labelWidth: 'auto',
+        span: { xs: 12, sm: 8, md: 8, lg: 8, xl: 6, xxl: 4 },
+      }}
       editable={{ type: 'multiple' }}
       pagination={{ defaultPageSize: 10 }}
       request={async (params, ...restParams) => {
@@ -63,7 +69,9 @@ const ProTable = <
           success: safeGetValue<boolean>(res, success, false),
         }
       }}
+      rowClassName={(record, index) => index % 2 && styles.odd}
       {...rest}
+      className={styles.container}
     />
   )
 }

@@ -1,7 +1,6 @@
 import ErrorAndLoading from '@/components/ErrorAndLoading'
 import ProTable from '@/components/ProTable'
 import { PlusOutlined } from '@ant-design/icons'
-import { PageContainer } from '@ant-design/pro-components'
 import { useRequest } from 'ahooks'
 import { Button } from 'antd'
 import { generateColumns } from './columns'
@@ -52,30 +51,28 @@ const Role = () => {
   const columns = generateColumns()
 
   return (
-    <PageContainer>
-      <ErrorAndLoading
-        error={error}
-        loading={loading}
-        onRetry={refresh}
-        spinProps={{ spinning: false }}
-      >
-        <ProTable<IList>
-          columns={columns}
-          request={runAsync}
-          toolBarRender={(action) => [
-            <EditRole
-              key='create'
-              refresh={action?.reload}
-              trigger={
-                <Button type='primary' icon={<PlusOutlined />}>
-                  新增角色
-                </Button>
-              }
-            />,
-          ]}
-        />
-      </ErrorAndLoading>
-    </PageContainer>
+    <ErrorAndLoading
+      error={error}
+      loading={loading}
+      onRetry={refresh}
+      spinProps={{ spinning: false }}
+    >
+      <ProTable<IList>
+        columns={columns}
+        request={runAsync}
+        // toolBarRender={(action) => [
+        //   <EditRole
+        //     key='create'
+        //     refresh={action?.reload}
+        //     trigger={
+        //       <Button type='primary' icon={<PlusOutlined />}>
+        //         新增角色
+        //       </Button>
+        //     }
+        //   />,
+        // ]}
+      />
+    </ErrorAndLoading>
   )
 }
 

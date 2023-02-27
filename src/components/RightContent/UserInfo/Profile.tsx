@@ -1,11 +1,8 @@
-import { EditOutlined } from '@ant-design/icons'
+import { UpdateUserInfo } from '@/services/system/UserService'
 import { ModalForm, ProForm } from '@ant-design/pro-components'
 import { useModel } from '@umijs/max'
 import { Avatar, message, Typography } from 'antd'
 import { useState } from 'react'
-import styles from './Profile.less'
-// import ProFormUploadAvatar from '@/components/Upload/ProFormUploadAvatar'
-import { UpdateUserInfo } from '@/services/system/UserService'
 
 const { Paragraph } = Typography
 
@@ -31,7 +28,7 @@ const Profile: React.FC<IProps> = ({ trigger }) => {
       modalProps={{ destroyOnClose: true }}
       onOpenChange={() => setNewName(nickName)}
       initialValues={{ avatar }}
-      onFinish={async values => {
+      onFinish={async (values) => {
         await UpdateUserInfo({
           ...initialState?.currentUser,
           ...values,
@@ -44,19 +41,8 @@ const Profile: React.FC<IProps> = ({ trigger }) => {
       }}
       width={500}
     >
-      {/* <ProFormUploadAvatar
-        label='用户头像'
-        name='avatar'
-        fieldProps={{ listType: 'picture' }}
-      >
-        <EditAvatar nickName={nickName} />
-      </ProFormUploadAvatar> */}
       <ProForm.Item label='用户头像'>
-        <Avatar
-          src={avatar || void 0}
-          alt={nickName}
-          style={{ backgroundColor: avatar ? void 0 : '#f56a00' }}
-        >
+        <Avatar src={avatar || void 0} alt={nickName}>
           {avatar || nickName?.slice(-2)}
         </Avatar>
       </ProForm.Item>
@@ -78,26 +64,3 @@ const Profile: React.FC<IProps> = ({ trigger }) => {
 }
 
 export default Profile
-
-interface EditAvatarProps {
-  imageUrl?: string
-  nickName?: string
-}
-
-function EditAvatar({ imageUrl, nickName }: EditAvatarProps) {
-  return (
-    <div className={styles['avatar-container']}>
-      <Avatar
-        src={imageUrl}
-        alt={nickName}
-        style={{
-          position: 'relative',
-          backgroundColor: imageUrl ? void 0 : '#f56a00',
-        }}
-      >
-        {imageUrl || nickName?.slice(-2)}
-      </Avatar>
-      <EditOutlined className={styles['avatar-edit-icon']} />
-    </div>
-  )
-}

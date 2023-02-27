@@ -1,9 +1,9 @@
-import { Avatar, Dropdown, Menu } from 'antd'
+import useUser from '@/hooks/useUser'
 import { LockOutlined, LogoutOutlined, UserOutlined } from '@ant-design/icons'
+import { useModel } from '@umijs/max'
+import { Avatar, Dropdown, Menu } from 'antd'
 import EditPassword from './EditPassword'
 import Profile from './Profile'
-import { useModel } from '@umijs/max'
-import useUser from '@/hooks/useUser'
 
 const UserInfo = () => {
   const { logout } = useUser()
@@ -48,12 +48,7 @@ const UserInfo = () => {
           gap: 8,
         }}
       >
-        <Avatar
-          size='small'
-          src={avatar || void 0}
-          alt={nickName}
-          style={{ backgroundColor: avatar ? void 0 : '#f56a00' }}
-        >
+        <Avatar size='small' src={avatar || void 0} alt={nickName}>
           {avatar || nickName?.slice(-2)}
         </Avatar>
         <span>{nickName}</span>

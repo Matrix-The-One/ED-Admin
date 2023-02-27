@@ -78,11 +78,13 @@ export const generateColumns = (): ProColumns<IList>[] => [
   {
     title: 'ID',
     dataIndex: 'id',
+    ellipsis: true,
     width: 80,
   },
   {
     title: '角色名称',
     dataIndex: 'name',
+    ellipsis: true,
     width: 120,
   },
   {
@@ -111,6 +113,7 @@ export const generateColumns = (): ProColumns<IList>[] => [
     title: '创建时间',
     dataIndex: 'createTime',
     valueType: 'dateTime',
+    ellipsis: true,
     search: false,
     sorter: (a, b) =>
       new Date(a.createTime!).getTime() - new Date(b.createTime!).getTime(),
@@ -125,7 +128,6 @@ export const generateColumns = (): ProColumns<IList>[] => [
   },
   {
     title: '操作',
-    fixed: 'right',
     search: false,
     width: 160,
     render: (_, record, __, action) => (

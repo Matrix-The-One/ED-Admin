@@ -52,7 +52,7 @@ const SystemMenu = () => {
         selectedKeys,
       }}
     >
-      <a style={{ display: 'flex', alignItems: 'center' }}>
+      <a style={{ display: 'flex', alignItems: 'center', color: '#fff' }}>
         {menus.find((i) => i.url === prefixUrl)?.name || '教学与科研管理平台'}{' '}
         <CaretDownOutlined style={{ fontSize: 18, marginLeft: 4 }} />
       </a>

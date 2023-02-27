@@ -4,10 +4,8 @@ import { SettingDrawer } from '@ant-design/pro-components'
 import type { RunTimeLayoutConfig } from '@umijs/max'
 import { history } from '@umijs/max'
 import defaultSettings from '../config/defaultSettings'
-import { SystemStoreEnum } from './constants/store'
 import UnAccessible from './pages/403'
 import { errorConfig } from './requestErrorConfig'
-import localforage from './utils/localforage'
 // import { UserInfo } from '@/services/system/UserService'
 
 const loginPath = '/login'
@@ -18,10 +16,6 @@ export async function getInitialState(): Promise<{
   loading?: boolean
   fetchUserInfo?: () => Promise<any>
 }> {
-  const navTheme = await localforage.getItem<'light' | 'realDark' | undefined>(
-    SystemStoreEnum.NAV_THEME,
-  )
-
   const fetchUserInfo = async () => {
     // try {
     //   const { data } = await UserInfo({
@@ -38,31 +32,29 @@ export async function getInitialState(): Promise<{
     return { name: '罗辑', nickName: '罗辑', account: '17777777777' }
   }
 
-  const settings = {
-    ...(defaultSettings as Partial<LayoutSettings>),
-    navTheme: navTheme || 'light',
-  }
-
   if (history.location.pathname !== loginPath) {
     const currentUser = await fetchUserInfo()
     return {
       fetchUserInfo,
       currentUser,
-      settings,
+      settings: defaultSettings as Partial<LayoutSettings>,
     }
   }
 
   return {
     fetchUserInfo,
-    settings,
+    settings: defaultSettings as Partial<LayoutSettings>,
   }
 }
 
 export const layout: RunTimeLayoutConfig = ({
   initialState,
-  setInitialState,
+  // setInitialState,
 }) => {
   return {
+    breakpoint: false,
+    defaultCollapsed: true,
+    menu: { collapsedShowTitle: true },
     rightContentRender: () => <RightContent />,
     waterMarkProps: {
       content: initialState?.currentUser?.name,
@@ -73,26 +65,26 @@ export const layout: RunTimeLayoutConfig = ({
       // }
     },
     unAccessible: <UnAccessible />,
-    childrenRender: (children) => {
-      return (
-        <>
-          {children}
-          <div style={{ display: 'none' }}>
-            <SettingDrawer
-              disableUrlParams
-              enableDarkTheme
-              settings={initialState?.settings}
-              onSettingChange={(settings) => {
-                setInitialState((preInitialState) => ({
-                  ...preInitialState,
-                  settings,
-                }))
-              }}
-            />
-          </div>
-        </>
-      )
-    },
+    // childrenRender: (children) => {
+    //   return (
+    //     <>
+    //       {children}
+    //       <div>
+    //         <SettingDrawer
+    //           disableUrlParams
+    //           enableDarkTheme
+    //           settings={initialState?.settings}
+    //           onSettingChange={(settings) => {
+    //             setInitialState((preInitialState) => ({
+    //               ...preInitialState,
+    //               settings,
+    //             }))
+    //           }}
+    //         />
+    //       </div>
+    //     </>
+    //   )
+    // },
     ...initialState?.settings,
   }
 }
